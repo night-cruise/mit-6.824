@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html lang="zh" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>链复制的配置管理器（Configuration Manager） - mit 6.824</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="A book which aims to introduce the theory and mechanism of async/await syntax and async runtime in the Rust.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 简介</a></li><li class="chapter-item expanded "><a href="../lecture-01-introduction/index.html"><strong aria-hidden="true">2.</strong> Lecture 01 - Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lecture-01-introduction/1.1-fen-bu-shi-xi-tong-de-qu-dong-li-he-tiao-zhan-drivens-and-challenges.html"><strong aria-hidden="true">2.1.</strong> 分布式系统的驱动力和挑战（Drivens and Challenges）</a></li><li class="chapter-item expanded "><a href="../lecture-01-introduction/1.2-ke-cheng-jie-gou-course-structure.html"><strong aria-hidden="true">2.2.</strong> 课程结构（Course Structure）</a></li><li class="chapter-item expanded "><a href="../lecture-01-introduction/1.3-fen-bu-shi-xi-tong-de-chou-xiang-he-shi-xian-gong-ju-abstraction-and-implementation.html"><strong aria-hidden="true">2.3.</strong> 分布式系统的抽象和实现工具（Abstraction and Implementation）</a></li><li class="chapter-item expanded "><a href="../lecture-01-introduction/1.4-xing-neng-performance.html"><strong aria-hidden="true">2.4.</strong> 可扩展性（Scalability）</a></li><li class="chapter-item expanded "><a href="../lecture-01-introduction/1.5-rong-cuo-fault-tolerance.html"><strong aria-hidden="true">2.5.</strong> 可用性（Availability）</a></li><li class="chapter-item expanded "><a href="../lecture-01-introduction/1.6-yi-zhi-xing-consistency.html"><strong aria-hidden="true">2.6.</strong> 一致性（Consistency）</a></li><li class="chapter-item expanded "><a href="../lecture-01-introduction/1.7-mapreduce-chu-tan.html"><strong aria-hidden="true">2.7.</strong> MapReduce基本工作方式</a></li><li class="chapter-item expanded "><a href="../lecture-01-introduction/1.8-mapreduce-han-shu.html"><strong aria-hidden="true">2.8.</strong> Map函数和Reduce函数</a></li></ol></li><li class="chapter-item expanded "><a href="../lecture-03-gfs/index.html"><strong aria-hidden="true">3.</strong> Lecture 03 - GFS</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lecture-03-gfs/3.1.html"><strong aria-hidden="true">3.1.</strong> Hard）</a></li><li class="chapter-item expanded "><a href="../lecture-03-gfs/3.2-qiang-yi-zhi-xing-strong-consistency.html"><strong aria-hidden="true">3.2.</strong> 错误的设计（Bad Design）</a></li><li class="chapter-item expanded "><a href="../lecture-03-gfs/3.3-gfs-te-dian.html"><strong aria-hidden="true">3.3.</strong> GFS的设计目标</a></li><li class="chapter-item expanded "><a href="../lecture-03-gfs/3.4.html"><strong aria-hidden="true">3.4.</strong> GFS Master 节点</a></li><li class="chapter-item expanded "><a href="../lecture-03-gfs/3.5.html"><strong aria-hidden="true">3.5.</strong> GFS读文件（Read File)</a></li><li class="chapter-item expanded "><a href="../lecture-03-gfs/3.6-xie-wen-jian-write-file.html"><strong aria-hidden="true">3.6.</strong> GFS写文件（Write File）（1）</a></li><li class="chapter-item expanded "><a href="../lecture-03-gfs/3.7-xie-wen-jian-write-file2.html"><strong aria-hidden="true">3.7.</strong> GFS写文件（Write File）（2）</a></li><li class="chapter-item expanded "><a href="../lecture-03-gfs/3.8.html"><strong aria-hidden="true">3.8.</strong> GFS的一致性</a></li></ol></li><li class="chapter-item expanded "><a href="../lecture-04-vmware-ft/index.html"><strong aria-hidden="true">4.</strong> Lecture 04 - VMware FT</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lecture-04-vmware-ft/4.1.html"><strong aria-hidden="true">4.1.</strong> 复制（Replication）</a></li><li class="chapter-item expanded "><a href="../lecture-04-vmware-ft/4.2.html"><strong aria-hidden="true">4.2.</strong> 状态转移和复制状态机（State Transfer and Replicated State Machine）</a></li><li class="chapter-item expanded "><a href="../lecture-04-vmware-ft/4.3.html"><strong aria-hidden="true">4.3.</strong> VMware FT 工作原理</a></li><li class="chapter-item expanded "><a href="../lecture-04-vmware-ft/4.4-non-determistic.html"><strong aria-hidden="true">4.4.</strong> 非确定性事件（Non-Deterministic Events）</a></li><li class="chapter-item expanded "><a href="../lecture-04-vmware-ft/4.5.html"><strong aria-hidden="true">4.5.</strong> 输出控制（Output Rule）</a></li><li class="chapter-item expanded "><a href="../lecture-04-vmware-ft/4.6-zhong-fu-shu-chu-duplicated-output.html"><strong aria-hidden="true">4.6.</strong> 重复输出（Duplicated Output）</a></li><li class="chapter-item expanded "><a href="../lecture-04-vmware-ft/4.7-testandset-fu-wu.html"><strong aria-hidden="true">4.7.</strong> Test-and-Set 服务</a></li></ol></li><li class="chapter-item expanded "><a href="../lecture-06-raft1/index.html"><strong aria-hidden="true">5.</strong> Lecture 06 - Raft1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lecture-06-raft1/6.1-split-brain.html"><strong aria-hidden="true">5.1.</strong> 脑裂（Split Brain）</a></li><li class="chapter-item expanded "><a href="../lecture-06-raft1/6.2-guo-ban-piao-jue-majority-vote.html"><strong aria-hidden="true">5.2.</strong> 过半票决（Majority Vote）</a></li><li class="chapter-item expanded "><a href="../lecture-06-raft1/6.3-raft-chu-tan.html"><strong aria-hidden="true">5.3.</strong> Raft 初探</a></li><li class="chapter-item expanded "><a href="../lecture-06-raft1/6.4-raft-tong-bu-shi-xu.html"><strong aria-hidden="true">5.4.</strong> Log 同步时序</a></li><li class="chapter-item expanded "><a href="../lecture-06-raft1/6.5-ri-zhi-raft-log.html"><strong aria-hidden="true">5.5.</strong> 日志（Raft Log）</a></li><li class="chapter-item expanded "><a href="../lecture-06-raft1/6.6-ying-yong-ceng-jie-kou.html"><strong aria-hidden="true">5.6.</strong> 应用层接口</a></li><li class="chapter-item expanded "><a href="../lecture-06-raft1/6.7-leader-xuan-ju-leader-election.html"><strong aria-hidden="true">5.7.</strong> Leader选举（Leader Election）</a></li><li class="chapter-item expanded "><a href="../lecture-06-raft1/6.8-xuan-ju-ding-shi-qi-election-timer.html"><strong aria-hidden="true">5.8.</strong> 选举定时器（Election Timer）</a></li><li class="chapter-item expanded "><a href="../lecture-06-raft1/6.9-ke-neng-de-yi-chang-qing-kuang.html"><strong aria-hidden="true">5.9.</strong> 可能的异常情况</a></li></ol></li><li class="chapter-item expanded "><a href="../lecture-07-raft2/index.html"><strong aria-hidden="true">6.</strong> Lecture 07 - Raft2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lecture-07-raft2/7.1.html"><strong aria-hidden="true">6.1.</strong> 日志恢复（Log Backup）</a></li><li class="chapter-item expanded "><a href="../lecture-07-raft2/7.2-xuan-ju-yue-shu-election-restriction.html"><strong aria-hidden="true">6.2.</strong> 选举约束（Election Restriction）</a></li><li class="chapter-item expanded "><a href="../lecture-07-raft2/7.3-hui-fu-jia-su-backup-acceleration.html"><strong aria-hidden="true">6.3.</strong> 快速恢复（Fast Backup）</a></li><li class="chapter-item expanded "><a href="../lecture-07-raft2/7.4-chi-jiu-hua-persistent.html"><strong aria-hidden="true">6.4.</strong> 持久化（Persistence）</a></li><li class="chapter-item expanded "><a href="../lecture-07-raft2/7.5-ri-zhi-kuai-zhao-log-snapshot.html"><strong aria-hidden="true">6.5.</strong> 日志快照（Log Snapshot）</a></li><li class="chapter-item expanded "><a href="../lecture-07-raft2/7.6-qiang-yi-zhi-linearizability.html"><strong aria-hidden="true">6.6.</strong> 线性一致（Linearizability）</a></li></ol></li><li class="chapter-item expanded "><a href="../lecture-08-zookeeper/index.html"><strong aria-hidden="true">7.</strong> Lecture 08 - Zookeeper</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lecture-08-zookeeper/8.1.html"><strong aria-hidden="true">7.1.</strong> 线性一致（Linearizability）（1）</a></li><li class="chapter-item expanded "><a href="../lecture-08-zookeeper/8.2-xian-xing-yi-zhi-linearizability2.html"><strong aria-hidden="true">7.2.</strong> 线性一致（Linearizability）（2）</a></li><li class="chapter-item expanded "><a href="../lecture-08-zookeeper/8.3-xian-xing-yi-zhi-linearizability3.html"><strong aria-hidden="true">7.3.</strong> 线性一致（Linearizability）（3）</a></li><li class="chapter-item expanded "><a href="../lecture-08-zookeeper/8.4-zookeeper.html"><strong aria-hidden="true">7.4.</strong> Zookeeper</a></li><li class="chapter-item expanded "><a href="../lecture-08-zookeeper/8.5.html"><strong aria-hidden="true">7.5.</strong> 一致保证（Consistency Guarantees）</a></li><li class="chapter-item expanded "><a href="../lecture-08-zookeeper/8.6-tong-bu-cao-zuo-sync.html"><strong aria-hidden="true">7.6.</strong> 同步操作（sync）</a></li><li class="chapter-item expanded "><a href="../lecture-08-zookeeper/8.7-jiu-xu-wen-jian-ready-fileznode.html"><strong aria-hidden="true">7.7.</strong> 就绪文件（Ready file/znode）</a></li></ol></li><li class="chapter-item expanded "><a href="../lecture-09-more-replication-craq/index.html"><strong aria-hidden="true">8.</strong> Lecture 09 - More Replication, CRAQ</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lecture-09-more-replication-craq/9.1-zookeeper-api.html"><strong aria-hidden="true">8.1.</strong> Zookeeper API</a></li><li class="chapter-item expanded "><a href="../lecture-09-more-replication-craq/9.2-zookeeper-shi-yong-chang-jing.html"><strong aria-hidden="true">8.2.</strong> 使用Zookeeper实现计数器</a></li><li class="chapter-item expanded "><a href="../lecture-09-more-replication-craq/untitled.html"><strong aria-hidden="true">8.3.</strong> 使用Zookeeper实现非扩展锁</a></li><li class="chapter-item expanded "><a href="../lecture-09-more-replication-craq/9.4-shi-yong-zookeeper-shi-xian-ke-kuo-zhan-suo.html"><strong aria-hidden="true">8.4.</strong> 使用Zookeeper实现可扩展锁</a></li><li class="chapter-item expanded "><a href="../lecture-09-more-replication-craq/9.5-lian-fu-zhi-chain-replication.html"><strong aria-hidden="true">8.5.</strong> 链复制（Chain Replication）</a></li><li class="chapter-item expanded "><a href="../lecture-09-more-replication-craq/9.6-lian-fu-zhi-de-gu-zhang-hui-fu-fail-recover.html"><strong aria-hidden="true">8.6.</strong> 链复制的故障恢复（Fail Recover）</a></li><li class="chapter-item expanded "><a href="../lecture-09-more-replication-craq/9.7-lian-fu-zhi-de-pei-zhi-guan-li-qi-configuration-manager.html" class="active"><strong aria-hidden="true">8.7.</strong> 链复制的配置管理器（Configuration Manager）</a></li></ol></li><li class="chapter-item expanded "><a href="../lecture-10-cloud-replicated-db-aurora/index.html"><strong aria-hidden="true">9.</strong> Lecture 10 - Cloud Replicated DB, Aurora</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lecture-10-cloud-replicated-db-aurora/10.1-aurora-bei-jing-li-shi.html"><strong aria-hidden="true">9.1.</strong> Aurora 背景历史</a></li><li class="chapter-item expanded "><a href="../lecture-10-cloud-replicated-db-aurora/10.2-gu-zhang-ke-hui-fu-shi-wu-crash-recoverable-transaction.html"><strong aria-hidden="true">9.2.</strong> 故障可恢复事务（Crash Recoverable Transaction）</a></li><li class="chapter-item expanded "><a href="../lecture-10-cloud-replicated-db-aurora/10.3.html"><strong aria-hidden="true">9.3.</strong> 关系型数据库（Amazon RDS）</a></li><li class="chapter-item expanded "><a href="../lecture-10-cloud-replicated-db-aurora/10.4-aurora-chu-tan.html"><strong aria-hidden="true">9.4.</strong> Aurora 初探</a></li><li class="chapter-item expanded "><a href="../lecture-10-cloud-replicated-db-aurora/10.5-quorum.html"><strong aria-hidden="true">9.5.</strong> Aurora存储服务器的容错目标（Fault-Tolerant Goals）</a></li><li class="chapter-item expanded "><a href="../lecture-10-cloud-replicated-db-aurora/10.6-quorum-fu-zhi-ji-zhi-quorum-replication.html"><strong aria-hidden="true">9.6.</strong> Quorum 复制机制（Quorum Replication）</a></li><li class="chapter-item expanded "><a href="../lecture-10-cloud-replicated-db-aurora/10.7.html"><strong aria-hidden="true">9.7.</strong> Aurora读写存储服务器</a></li><li class="chapter-item expanded "><a href="../lecture-10-cloud-replicated-db-aurora/10.8-shu-ju-fen-pian-protection-group.html"><strong aria-hidden="true">9.8.</strong> 数据分片（Protection Group）</a></li><li class="chapter-item expanded "><a href="../lecture-10-cloud-replicated-db-aurora/10.9-zhi-du-shu-ju-ku-readonly-database.html"><strong aria-hidden="true">9.9.</strong> 只读数据库（Read-only Database）</a></li></ol></li><li class="chapter-item expanded "><a href="../lecture-11-cache-consistency-frangipani/index.html"><strong aria-hidden="true">10.</strong> Lecture 11 - Cache Consistency: Frangipani</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lecture-11-cache-consistency-frangipani/11.1-frangipani-chu-tan.html"><strong aria-hidden="true">10.1.</strong> Frangipani 初探</a></li><li class="chapter-item expanded "><a href="../lecture-11-cache-consistency-frangipani/11.2-frangipani-de-tiao-zhan-challenges.html"><strong aria-hidden="true">10.2.</strong> Frangipani的挑战（Challenges）</a></li><li class="chapter-item expanded "><a href="../lecture-11-cache-consistency-frangipani/1.3-huan-cun-yi-zhi-xing-cache-coherence.html"><strong aria-hidden="true">10.3.</strong> Frangipani的锁服务（Lock Server）</a></li><li class="chapter-item expanded "><a href="../lecture-11-cache-consistency-frangipani/1.4-huan-cun-yi-zhi-xie-yi-coherence-protocol.html"><strong aria-hidden="true">10.4.</strong> 缓存一致性（Cache Coherence）</a></li><li class="chapter-item expanded "><a href="../lecture-11-cache-consistency-frangipani/11.5-yuan-zi-xing-atomicity.html"><strong aria-hidden="true">10.5.</strong> 原子性（Atomicity）</a></li><li class="chapter-item expanded "><a href="../lecture-11-cache-consistency-frangipani/11.6-gu-zhang-hui-fu-crash-recovery.html"><strong aria-hidden="true">10.6.</strong> Frangipani Log</a></li><li class="chapter-item expanded "><a href="../lecture-11-cache-consistency-frangipani/11.7-gu-zhang-hui-fu-crash-recovery.html"><strong aria-hidden="true">10.7.</strong> 故障恢复（Crash Recovery）</a></li><li class="chapter-item expanded "><a href="../lecture-11-cache-consistency-frangipani/11.8-frangipani-zong-jie.html"><strong aria-hidden="true">10.8.</strong> Frangipani总结</a></li></ol></li><li class="chapter-item expanded "><a href="../lecture-12-distributed-transaction/index.html"><strong aria-hidden="true">11.</strong> Lecture 12 - Distributed Transaction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../lecture-12-distributed-transaction/12.1.html"><strong aria-hidden="true">11.1.</strong> 分布式事务初探（Distributed Transaction）</a></li><li class="chapter-item expanded "><a href="../lecture-12-distributed-transaction/12.2-bing-fa-kong-zhi-concurrency-control.html"><strong aria-hidden="true">11.2.</strong> 并发控制（Concurrency Control）</a></li><li class="chapter-item expanded "><a href="../lecture-12-distributed-transaction/12.3-liang-jie-duan-ti-jiao-twophase-commit.html"><strong aria-hidden="true">11.3.</strong> 两阶段提交（Two-Phase Commit）</a></li><li class="chapter-item expanded "><a href="../lecture-12-distributed-transaction/12.4-cuo-wu-chu-li.html"><strong aria-hidden="true">11.4.</strong> 故障恢复（Crash Recovery）</a></li><li class="chapter-item expanded "><a href="../lecture-12-distributed-transaction/12.5-zong-jie.html"><strong aria-hidden="true">11.5.</strong> 总结</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">mit 6.824</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/night-cruise/mit-6.824" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="97-链复制的配置管理器configuration-manager"><a class="header" href="#97-链复制的配置管理器configuration-manager">9.7 链复制的配置管理器（Configuration Manager）</a></h1>
+<p>（接上一节最后）</p>
+<p>所以，Chain Replication并不能抵御网络分区，也不能抵御脑裂。在实际场景中，这意味它不能单独使用。Chain Replication是一个有用的方案，但是它不是一个完整的复制方案。它在很多场景都有使用，但是会以一种特殊的方式来使用。总是会有一个外部的权威（External Authority）来决定谁是活的，谁挂了，并确保所有参与者都认可由哪些节点组成一条链，这样在链的组成上就不会有分歧。这个外部的权威通常称为Configuration Manager。</p>
+<p>Configuration Manager的工作就是监测节点存活性，一旦Configuration Manager认为一个节点挂了，它会生成并送出一个新的配置，在这个新的配置中，描述了链的新的定义，包含了链中所有的节点，HEAD和TAIL。Configuration Manager认为挂了的节点，或许真的挂了也或许没有，但是我们并不关心。因为所有节点都会遵从新的配置内容，所以现在不存在分歧了。</p>
+<p>现在只有一个角色（Configuration Manager）在做决定，它不可能否认自己，所以可以解决脑裂的问题。</p>
+<p>当然，你是如何使得一个服务是容错的，不否认自己，同时当有网络分区时不会出现脑裂呢？答案是，Configuration Manager通常会基于Raft或者Paxos。在CRAQ的场景下，它会基于Zookeeper。而Zookeeper本身又是基于类似Raft的方案。</p>
+<p><img src="../.gitbook/assets/image%20(309).png" alt="" /></p>
+<p>所以，你的数据中心内的设置通常是，你有一个基于Raft或者Paxos的Configuration Manager，它是容错的，也不会受脑裂的影响。之后，通过一系列的配置更新通知，Configuration Manager将数据中心内的服务器分成多个链。比如说，Configuration Manager决定链A由服务器S1，S2，S3组成，链B由服务器S4，S5，S6组成。</p>
+<p><img src="../.gitbook/assets/image%20(310).png" alt="" /></p>
+<p>Configuration Manager通告给所有参与者整个链的信息，所以所有的客户端都知道HEAD在哪，TAIL在哪，所有的服务器也知道自己在链中的前一个节点和后一个节点是什么。现在，单个服务器对于其他服务器状态的判断，完全不重要。假如第二个节点真的挂了，在收到新的配置之前，HEAD需要不停的尝试重发请求。节点自己不允许决定谁是活着的，谁挂了。</p>
+<p>这种架构极其常见，这是正确使用Chain Replication和CRAQ的方式。在这种架构下，像Chain Replication一样的系统不用担心网络分区和脑裂，进而可以使用类似于Chain Replication的方案来构建非常高速且有效的复制系统。比如在上图中，我们可以对数据分片（Sharding），每一个分片都是一个链。其中的每一个链都可以构建成极其高效的结构来存储你的数据，进而可以同时处理大量的读写请求。同时，我们也不用太担心网络分区的问题，因为它被一个可靠的，非脑裂的Configuration Manager所管理。</p>
+<blockquote>
+<p>学生提问：为什么存储具体数据的时候用Chain Replication，而不是Raft？</p>
+<p>Robert教授：这是一个非常合理的问题。其实数据用什么存并不重要。因为就算我们这里用了Raft，我们还是需要一个组件在产生冲突的时候来做决策。比如说数据如何在我们数百个复制系统中进行划分。如果我需要一个大的系统，我需要对数据进行分片，需要有个组件来决定数据是如何分配到不同的分区。随着时间推移，这里的划分可能会变化，因为硬件可能会有增减，数据可能会变多等等。Configuration Manager会决定以A或者B开头的key在第一个分区，以C或者D开头的key在第二个分区。至于在每一个分区，我们该使用什么样的复制方法，Chain Replication，Paxos，还是Raft，不同的人有不同的选择，有些人会使用Paxos，比如说Spanner，我们之后也会介绍。在这里，不使用Paxos或者Raft，是因为Chain Replication更加的高效，因为它减轻了Leader的负担，这或许是一个非常关键的问题。</p>
+<p>某些场合可能更适合用Raft或者Paxos，因为它们不用等待一个慢的副本。而当有一个慢的副本时，Chain Replication会有性能的问题，因为每一个写请求需要经过每一个副本，只要有一个副本变慢了，就会使得所有的写请求处理变慢。这个可能非常严重，比如说你有1000个服务器，因为某人正在安装软件或者其他的原因，任意时间都有几个服务器响应比较慢。每个写请求都受限于当前最慢的服务器，这个影响还是挺大的。然而对于Raft，如果有一个副本响应速度较慢，Leader只需要等待过半服务器，而不用等待所有的副本。最终，所有的副本都能追上Leader的进度。所以，Raft在抵御短暂的慢响应方面表现的更好。一些基于Paxos的系统，也比较擅长处理副本相距较远的情况。对于Raft和Paxos，你只需要过半服务器确认，所以不用等待一个远距离数据中心的副本确认你的操作。这些原因也使得人们倾向于使用类似于Raft和Paxos这样的选举系统，而不是Chain Replication。这里的选择取决于系统的负担和系统要实现的目标。</p>
+<p>不管怎样，配合一个外部的权威机构这种架构，我不确定是不是万能的，但的确是非常的通用。</p>
+<p>学生提问：如果Configuration Manger认为两个服务器都活着，但是两个服务器之间的网络实际中断了会怎样？</p>
+<p>Robert教授：对于没有网络故障的环境，总是可以假设计算机可以通过网络互通。对于出现网络故障的环境，可能是某人踢到了网线，一些路由器被错误配置了或者任何疯狂的事情都可能发生。所以，因为错误的配置你可能陷入到这样一个情况中，Chain  Replication中的部分节点可以与Configuration Manager通信，并且Configuration Manager认为它们是活着的，但是它们彼此之间不能互相通信。</p>
+</blockquote>
+<p><img src="../.gitbook/assets/image%20(311).png" alt="" /></p>
+<blockquote>
+<p>这是这种架构所不能处理的情况。如果你希望你的系统能抵御这样的故障。你的Configuration Manager需要更加小心的设计，它需要选出不仅是它能通信的服务器，同时这些服务器之间也能相互通信。在实际中，任意两个节点都有可能网络不通。</p>
+</blockquote>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../lecture-09-more-replication-craq/9.6-lian-fu-zhi-de-gu-zhang-hui-fu-fail-recover.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../lecture-10-cloud-replicated-db-aurora/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../lecture-09-more-replication-craq/9.6-lian-fu-zhi-de-gu-zhang-hui-fu-fail-recover.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../lecture-10-cloud-replicated-db-aurora/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

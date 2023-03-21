@@ -1,0 +1,13 @@
+[book]
+title = "mit 6.824"
+authors = ["Hong Hui Xiao/肖宏辉"]
+description = "A mdbook version of mit 6.824 of [Hong Hui Xiao/肖宏辉](https://github.com/huihongxiao/MIT6.824)."
+language = "zh"
+multilingual = false
+src = "src"
+
+[output.html]
+git-repository-url = "https://github.com/night-cruise/mit-6.824"
+
+[build]
+build-dir = "docs"
